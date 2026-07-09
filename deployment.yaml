@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitops-demo
+  namespace: gitops-demo
+  labels:
+    app: gitops-demo
+spec:
+  replicas: 2          # ← the source of truth for how many pods should run
+  selector:
+    matchLabels:
+      app: gitops-demo
+  template:
+    metadata:
+      labels:
+        app: gitops-demo
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/dearchitech/devops-showcase:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "100m", memory: "128Mi" }
