@@ -6,7 +6,7 @@ metadata:
   labels:
     app: gitops-demo
 spec:
-  replicas: 2          # ← the source of truth for how many pods should run
+  replicas: 3          # ← the source of truth for how many pods should run
   selector:
     matchLabels:
       app: gitops-demo
